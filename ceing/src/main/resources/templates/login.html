@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .container {
+         max-width: 560px;
+         }
+
+         .field-error {
+         border-color: #dc3545;
+         color: #dc3545;
+         }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="py-5 text-center">
+        <h2>로그인</h2>
+    </div>
+    <form th:action method="post" th:object="${login}">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p class="field-error" th:each="err : ${#fields.globalErrors()}"
+               th:text="${err}">전체 오류 메시지</p>
+        </div>
+
+        <div>
+            <label for="loginId"  th:text="|아이디를 입력하세요 : |"></label>
+            <input id="loginId" th:field="*{loginId}" th:errorclass="field-error">
+            <!-- 검증 시 잡힌 데이터 여기에 출력-->
+            <div class="field-error" th:errors="*{loginId}"></div> <!--에러가 있는 경우 해당 부분에 BindingResult에 담겼던 에러 메시지 출력 ,-->
+        </div>
+
+        <div>
+            <label for="password"  th:text="|비밀번호를 입력하세요 : |"></label>
+            <input id="password" th:field="*{password}" th:errorclass="field-error">
+            <!-- 검증 시 잡힌 데이터 여기에 출력-->
+            <div class="field-error" th:errors="*{password}"></div>
+
+        </div>
+
+        <div>
+            <button th:text="|누르시오|"></button>
+        </div>
+
+
+
+    </form>
+
+</body>
+</html>
