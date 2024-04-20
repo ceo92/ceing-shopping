@@ -1,4 +1,4 @@
-# Ceing-Shoppingmall - 개인 백엔드 프로젝트
+# Ceing-Shoppingmall : 개인 백엔드 프로젝트
 ## 프로젝트 소개
 마켓컬리 , 올리브영 , 쿠팡 등 다양한 쇼핑몰의 기능 및 UI를 참고하여 나만의 쇼핑몰 구현
 
