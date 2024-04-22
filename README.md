@@ -3,12 +3,14 @@
 마켓컬리 , 올리브영 , 쿠팡 등 다양한 쇼핑몰의 기능 및 UI를 참고하여 나만의 쇼핑몰 구현
 
 
+
 ## 사용 기술
 - 사용 언어 : Java(Open JDK 17.0.10)
 - 웹 프레임워크 : Spring Boot + Thymeleaf
 - 데이터 접근 기술 : JPA , Spring Data JPA , QueryDsl
 - 데이터베이스 : H2 DataBase
 - HTML : 부트스트랩 템플릿
+
 
 
 ## 구현 기능의 연혁
