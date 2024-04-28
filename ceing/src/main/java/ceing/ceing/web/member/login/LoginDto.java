@@ -1,4 +1,4 @@
-package ceing.ceing.web.login;
+package ceing.ceing.web.member.login;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

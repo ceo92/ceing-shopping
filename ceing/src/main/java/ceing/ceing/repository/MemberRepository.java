@@ -41,9 +41,7 @@ public class MemberRepository {
 
     public Optional<Member> findByLoginId(String loginId){
         List<Member> findMembers = findAll();
-        return Optional.ofNullable(findMembers.stream().filter(member -> member.getLoginId().equals(loginId)).findFirst().orElse(null));
-
-
+        return findMembers.stream().filter(member -> member.getLoginId().equals(loginId)).findFirst();
     }
 
 

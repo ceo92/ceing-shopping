@@ -1,4 +1,4 @@
-package ceing.ceing.web.login;
+package ceing.ceing.web.member.login;
 
 import ceing.ceing.SessionConst;
 import ceing.ceing.domain.Member;
