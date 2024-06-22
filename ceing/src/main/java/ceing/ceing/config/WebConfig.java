@@ -1,7 +1,8 @@
-package ceing.ceing.web;
+package ceing.ceing.config;
 
 import ceing.ceing.formatter.MemberFormatter;
-import ceing.ceing.web.member.login.LoginAnnotationArgumentResolver;
+import ceing.ceing.interceptor.MyInterceptor;
+import ceing.ceing.web.loginannotation.LoginAnnotationArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

@@ -1,8 +1,13 @@
-package ceing.ceing.web.member.login;
+package ceing.ceing.web;
 
 import ceing.ceing.SessionConst;
+import ceing.ceing.domain.Address;
 import ceing.ceing.domain.Member;
+import ceing.ceing.exception.DuplicateLoginIdException;
+import ceing.ceing.exception.PasswordMismatchException;
 import ceing.ceing.service.MemberService;
+import ceing.ceing.web.dto.MemberLoginDto;
+import ceing.ceing.web.dto.MemberSaveDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -21,39 +26,41 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-public class LoginController {
-    /**
-     * 로그인 화면 컨트롤러
-     */
+public class MemberController {
+
     private final MemberService memberService;
+
+    /**
+     * 로그인 로직
+     */
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute("login") LoginDto loginDto){
+    public String loginForm(@ModelAttribute("login") MemberLoginDto memberLoginDto){
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@Validated @ModelAttribute("login") LoginDto loginDto , BindingResult bindingResult , HttpServletRequest request){
+    public String login(@Validated @ModelAttribute("login") MemberLoginDto memberLoginDto, BindingResult bindingResult , HttpServletRequest request){
         //1. 데이터 유효성 검증
         if (bindingResult.hasErrors()){
             return "login";
         }
 
         //2. 로그인 검증
-        Member loginMember = memberService.login(loginDto.getLoginId() , loginDto.getPassword());
+        Member loginMember = memberService.login(memberLoginDto.getLoginId() , memberLoginDto.getPassword());
         if (loginMember==null){
             bindingResult.reject("loginFail");
             return "login";
         }
 
         //3. 로그인 성공
-        HttpSession session = request.getSession(true); //있으면 반환 업
+        HttpSession session = request.getSession(true); //세션 살아있으면 그거 반환 없으면 새로 세션 생성해서 반환
         session.setAttribute(SessionConst.MEMBER_NAME , loginMember);
         log.info("session = {}" , session.getAttribute(SessionConst.MEMBER_NAME));
         return "redirect:/";
     }
 
     /**
-     *  로그아웃 컨트롤러
+     *  로그아웃 로직
      */
     @PostMapping("/logout")
     public String logout(HttpServletRequest request){
@@ -66,7 +73,7 @@ public class LoginController {
     }
 
     /**
-     * 회원가입 컨트롤러
+     * 회원가입 로직
      */
     @GetMapping("/join")
     public String join(@ModelAttribute("member") MemberSaveDto member){
@@ -76,41 +83,23 @@ public class LoginController {
 
     @PostMapping("/join")
     public String join(@Validated @ModelAttribute("member") MemberSaveDto memberSaveDto , BindingResult bindingResult){
-        /**
-         * 1. 필드 에러 검증(Bean Validation)
-         */
-
+        //필드 에러 검증(Bean Validation)
         if (bindingResult.hasErrors()){
+            log.info("원인이 뭐였을까?? : {}" , bindingResult.getAllErrors());
             return "join";
         }
-        /**
-         * 2. 전역 에러 검증(reject())
-         */
-        //입력한 아이디 중복 여부 체크
-        String loginId = memberSaveDto.getLoginId();
-        Member findMember = memberService.findByLoginId(loginId);
-        if (findMember != null) {
+        //ㅅㅂ 비즈니스 로직 서비스에서 쳐 하랬지 ㅡㅡ
+
+        try {
+            memberService.join(memberSaveDto);
+        }catch (DuplicateLoginIdException e){
             bindingResult.reject("duplicate");
             return "join";
-        }
-
-        //비밀번호 일치여부 체크
-        String rePassword = memberSaveDto.getRePassword();
-        String password = memberSaveDto.getPassword();
-        if (!password.equals(rePassword)){
+        }catch (PasswordMismatchException e){
             bindingResult.reject("pwDoubleCheckFail");
             return "join";
         }
 
-        /**
-         * 3. 회원가입 성공 후 자동 로그인
-         */
-        String username = memberSaveDto.getUsername();
-        String address = memberSaveDto.getAddress();
-        String phoneNumber = memberSaveDto.getPhoneNumber();
-
-        Member member = new Member(username, address, phoneNumber, loginId, password);
-        memberService.save(member);
         return "index";
     }
 

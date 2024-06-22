@@ -1,8 +1,16 @@
-package ceing.ceing.web.member.login;
+package ceing.ceing.web.dto;
 
+import ceing.ceing.domain.Address;
+import jakarta.persistence.Embedded;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.validation.annotation.Validated;
+
+/**
+ * 회원가입 DTO
+ */
 
 @Getter @Setter
 public class MemberSaveDto {
@@ -18,8 +26,9 @@ public class MemberSaveDto {
     @NotBlank
     private String rePassword;
 
-    @NotBlank(message = "주소")
-    private String address;
+    @Embedded
+    @Valid
+    private Address address;
 
     @NotBlank(message = "전화번호")
     private String phoneNumber;

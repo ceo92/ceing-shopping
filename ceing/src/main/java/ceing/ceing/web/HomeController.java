@@ -1,8 +1,8 @@
-package ceing.ceing.web.controller;
+package ceing.ceing.web;
 
 
 import ceing.ceing.domain.Member;
-import ceing.ceing.web.member.login.Login;
+import ceing.ceing.web.loginannotation.Login;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
