@@ -212,10 +212,19 @@
 
 
         <div class="form-floating">
-            <input th:field="*{address}" class="form-control" id="address" placeholder="address" th:errorclass="field-error">
-            <label for="address">주소</label>
-            <div class="field-error" th:errors="*{address}"></div>
+            <input th:field="*{roadNameAddress}" class="form-control" id="roadNameAddress" placeholder="roadNameAddress" th:errorclass="field-error">
+            <label for="roadNameAddress">도로명 주소</label>
+            <div class="field-error" th:errors="*{roadNameAddress}"></div>
         </div>
+
+
+        <div class="form-floating">
+            <input th:field="*{zipCode}" class="form-control" id="zipCode" placeholder="zipCode" th:errorclass="field-error">
+            <label for="zipCode">우편번호</label>
+            <div class="field-error" th:errors="*{zipCode}"></div>
+        </div>
+
+
 
 
         <div class="form-floating">

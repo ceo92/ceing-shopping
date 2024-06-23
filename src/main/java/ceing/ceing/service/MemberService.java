@@ -30,20 +30,34 @@ public class MemberService {
     @Transactional
     public void join(MemberSaveDto memberSaveDto){
          //회원가입 시 1. 아이디 중복 체크  2. 비밀번호 8자리 및 특수문자 포함? 3.
+        Member member = validateMemberBeforeJoin(memberSaveDto);
+        memberRepository.save(member);
+
+    }
+
+    private Member validateMemberBeforeJoin(MemberSaveDto memberSaveDto) {
         String loginId = memberSaveDto.getLoginId();
         //id로 찾았는데 하나라도 있다면 예외 발생 !!
-        memberRepository.findByLoginId(loginId).orElseThrow(()->new DuplicateLoginIdException("이미 존재하는 ID입니다."));
+        /**
+         * 1. 아이디 중복 여부 검증
+         */
+        memberRepository.findByLoginId(loginId).ifPresent(m -> {
+            throw new DuplicateLoginIdException("중복된 아이디입니다.");
+        });
         String password = memberSaveDto.getPassword();
         String rePassword = memberSaveDto.getRePassword();
+        /**
+         * 2. 첫번째 비밀번호 != 두번째 비밀번호 검증
+         */
         if (!password.equals(rePassword)){
             throw new PasswordMismatchException("비밀번호를 한번 더 확인해주세요");
         }
         String username = memberSaveDto.getUsername();
-        Address address = memberSaveDto.getAddress();
+        String roadNameAddress = memberSaveDto.getRoadNameAddress();
+        String zipCode = memberSaveDto.getZipCode();
         String phoneNumber = memberSaveDto.getPhoneNumber();
-        Member member = new Member(username, address, phoneNumber , loginId , password);
-        memberRepository.save(member);
-
+        Member member = new Member(username, new Address(roadNameAddress , zipCode), phoneNumber , loginId , password);
+        return member;
     }
 
     /**
@@ -70,7 +84,7 @@ public class MemberService {
      * 로그인 id로 회원 조회
      */
     public Member findByLoginId(String loginId){
-        return memberRepository.findByLoginId(loginId).orElse(null);
+        return memberRepository.findByLoginId(loginId).orElseThrow(() -> new IllegalStateException("호출하신 로그인 ID가 없습니다."));
     }
 
     /**
@@ -80,8 +94,11 @@ public class MemberService {
         return findMembers.stream()
             .filter(member -> member.getLoginId().equals(loginId) && member.getPassword()
                 .equals(password))
-            .findAny().orElse(null);
+            .findAny().orElseThrow(() -> new IllegalArgumentException("ID 혹은 비밀번호를 다시 한 번 확인해주세요"));
+
     }
+    //있으면 ifPresent 검증
+    //없으면 orElseThrow로 값 추출해서 throw로 예외 발생해서 검증
 
 
 

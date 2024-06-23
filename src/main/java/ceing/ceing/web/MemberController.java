@@ -46,17 +46,22 @@ public class MemberController {
         }
 
         //2. 로그인 검증
-        Member loginMember = memberService.login(memberLoginDto.getLoginId() , memberLoginDto.getPassword());
-        if (loginMember==null){
+        try {
+            Member loginMember = memberService.login(memberLoginDto.getLoginId(), memberLoginDto.getPassword());
+
+            //2-1. 로그인 성공
+            HttpSession session = request.getSession(true); //세션 살아있으면 그거 반환 없으면 새로 세션 생성해서 반환
+            session.setAttribute(SessionConst.MEMBER_NAME , loginMember);
+            log.info("session = {}" , session.getAttribute(SessionConst.MEMBER_NAME));
+            return "redirect:/";
+        }catch (IllegalArgumentException e){
+            //2-2 로그인 실패
             bindingResult.reject("loginFail");
             return "login";
         }
 
-        //3. 로그인 성공
-        HttpSession session = request.getSession(true); //세션 살아있으면 그거 반환 없으면 새로 세션 생성해서 반환
-        session.setAttribute(SessionConst.MEMBER_NAME , loginMember);
-        log.info("session = {}" , session.getAttribute(SessionConst.MEMBER_NAME));
-        return "redirect:/";
+
+
     }
 
     /**

@@ -1,4 +1,4 @@
-package ceing.ceing.web.loginannotation;
+package ceing.ceing.web.constraintannotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package ceing.ceing.web.loginannotation;
+package ceing.ceing.web.constraintannotation;
 
 import ceing.ceing.SessionConst;
 import ceing.ceing.domain.Member;

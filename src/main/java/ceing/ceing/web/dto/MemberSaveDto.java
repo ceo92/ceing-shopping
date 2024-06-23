@@ -1,6 +1,7 @@
 package ceing.ceing.web.dto;
 
 import ceing.ceing.domain.Address;
+import ceing.ceing.web.constraintannotation.NotBlankAddress;
 import jakarta.persistence.Embedded;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -26,9 +27,11 @@ public class MemberSaveDto {
     @NotBlank
     private String rePassword;
 
-    @Embedded
-    @Valid
-    private Address address;
+    @NotBlank
+    private String roadNameAddress;
+
+    @NotBlank
+    private String zipCode;
 
     @NotBlank(message = "전화번호")
     private String phoneNumber;
