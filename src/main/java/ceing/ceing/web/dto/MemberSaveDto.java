@@ -1,6 +1,7 @@
 package ceing.ceing.web.dto;
 
 import ceing.ceing.domain.Address;
+import ceing.ceing.web.constraintannotation.NoBlank;
 import ceing.ceing.web.constraintannotation.NotBlankAddress;
 import jakarta.persistence.Embedded;
 import jakarta.validation.Valid;
@@ -15,25 +16,26 @@ import org.springframework.validation.annotation.Validated;
 
 @Getter @Setter
 public class MemberSaveDto {
-    @NotBlank(message = "이름")
+
+    @NoBlank
     private String username;
 
-    @NotBlank(message = "아이디")
+    @NoBlank
     private String loginId;
 
-    @NotBlank(message = "비밀번호")
+    @NoBlank
     private String password;
 
-    @NotBlank
+    @NoBlank
     private String rePassword;
 
-    @NotBlank
+    @NoBlank
     private String roadNameAddress;
 
-    @NotBlank
+    @NoBlank
     private String zipCode;
 
-    @NotBlank(message = "전화번호")
+    @NoBlank
     private String phoneNumber;
 
 }
