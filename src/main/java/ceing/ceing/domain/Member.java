@@ -23,8 +23,7 @@ public class Member {
     private Address address;
     private String phoneNumber;
 
-    public Member(String name, Address address, String phoneNumber, String loginId,
-        String password) {
+    public Member(String name, Address address, String phoneNumber, String loginId, String password) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;

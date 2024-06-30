@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class MemberService {
 
-
     private final MemberRepository memberRepository;
 
     /**
@@ -56,8 +55,7 @@ public class MemberService {
         String roadNameAddress = memberSaveDto.getRoadNameAddress();
         String zipCode = memberSaveDto.getZipCode();
         String phoneNumber = memberSaveDto.getPhoneNumber();
-        Member member = new Member(username, new Address(roadNameAddress , zipCode), phoneNumber , loginId , password);
-        return member;
+        return new Member(username, new Address(roadNameAddress , zipCode), phoneNumber , loginId , password);
     }
 
     /**
@@ -66,8 +64,8 @@ public class MemberService {
     @Transactional
     public void updateMember(Long memberId , MemberUpdateDto memberUpdateDto){
         Member updateMember = memberRepository.findById(memberId).orElseThrow();
-        updateMember.changeMemberInfo(memberUpdateDto.getUsername() , memberUpdateDto.getAddress() , memberUpdateDto.getPhoneNumber());
         //setter 지양 설계 ㅇㅇ
+        updateMember.changeMemberInfo(memberUpdateDto.getUsername() , memberUpdateDto.getAddress() , memberUpdateDto.getPhoneNumber());
     }
 
 

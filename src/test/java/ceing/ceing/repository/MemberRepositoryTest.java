@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class MemberRepositoryTest {
 
-
     @Autowired private MemberRepository memberRepository;
     @Test
     void save() {

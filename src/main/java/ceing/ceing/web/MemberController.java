@@ -90,7 +90,6 @@ public class MemberController {
     public String join(@Validated @ModelAttribute("member") MemberSaveDto memberSaveDto , BindingResult bindingResult){
         //필드 에러 검증(Bean Validation)
         if (bindingResult.hasErrors()){
-            log.info("원인이 뭐였을까?? : {}" , bindingResult.getAllErrors());
             return "join";
         }
         //ㅅㅂ 비즈니스 로직 서비스에서 쳐 하랬지 ㅡㅡ
