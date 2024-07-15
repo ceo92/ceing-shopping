@@ -2,7 +2,7 @@ package ceing.ceing.web;
 
 
 import ceing.ceing.domain.Member;
-import ceing.ceing.web.constraintannotation.Login;
+import ceing.ceing.web.constraintannotation.login.Login;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

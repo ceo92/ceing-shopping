@@ -1,8 +1,6 @@
 package ceing.ceing.domain;
 
-import ceing.ceing.web.constraintannotation.NotBlankAddress;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,9 +1,7 @@
-package ceing.ceing.web.constraintannotation;
+package ceing.ceing.web.constraintannotation.validation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import java.lang.annotation.Annotation;
-import java.util.Arrays;
 import org.springframework.util.StringUtils;
 
 public class NoBlankValidator implements ConstraintValidator<NoBlank , String> {

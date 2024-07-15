@@ -1,4 +1,4 @@
-package ceing.ceing.web.constraintannotation;
+package ceing.ceing.web.constraintannotation.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
