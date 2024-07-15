@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -35,11 +36,12 @@ public class MemberController {
      * 로그인 로직
      */
     @GetMapping("/login")
-    public String loginForm(@ModelAttribute("login") MemberLoginDto memberLoginDto){
+    public String loginForm(Model model){
+        model.addAttribute("login", new MemberLoginDto());
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/login") //lo
     public String login(@Validated @ModelAttribute("login") MemberLoginDto memberLoginDto, BindingResult bindingResult , HttpServletRequest request){
         //1. 데이터 유효성 검증
         if (bindingResult.hasErrors()){

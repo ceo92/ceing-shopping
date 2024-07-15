@@ -177,7 +177,7 @@
     <form th:object="${member}" method="post" th:action>
         <p>
             <!--로고-->
-            <a href="/"><img src="assets/my-icon/ceing-logo.svg" width="135" height="55"></a>
+            <a href="/"><img src="assets/my-icon/ceing.svg" width="135" height="55"></a>
             <!--전역 오류-->
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
