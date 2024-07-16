@@ -1,4 +1,4 @@
-package ceing.ceing.web;
+package ceing.ceing.web.controller;
 
 import ceing.ceing.SessionConst;
 import ceing.ceing.domain.Address;
@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,7 +48,6 @@ public class MemberController {
         if (bindingResult.hasErrors()){
             return "login";
         }
-
         //2. 로그인 검증
         try {
             Member loginMember = memberService.login(memberLoginDto.getLoginId(), memberLoginDto.getPassword());
@@ -66,7 +66,6 @@ public class MemberController {
 
 
     }
-
     /**
      *  로그아웃 로직
      */
@@ -95,7 +94,7 @@ public class MemberController {
         if (bindingResult.hasErrors()){
             return "join";
         }
-        //ㅅㅂ 비즈니스 로직 서비스에서 쳐 하랬지 ㅡㅡ
+        //ㅅㅂ 비즈니스 로직 서비스에서 쳐 하랬지 ㅡㅡ 전역 에러 처리는 그냥 컨트롤러에서 하자 ㅇㅇ
 
         try {
             memberService.join(memberSaveDto);
@@ -109,6 +108,11 @@ public class MemberController {
 
         return "index";
     }
+
+
+
+
+
 
 
 

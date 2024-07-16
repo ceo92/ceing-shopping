@@ -8,12 +8,11 @@
     <meta name="author" content="" />
     <title>Shop Item - Start Bootstrap Template</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../assets/dist/css/bootstrap.min.css"
-          th:href="@{/assets/dist/css/bootstrap.min.css}"
-          rel="stylesheet">
+    <div th:replace="~{fragments/header :: bootstrap-css}"></div>
+
 </head>
 <body>
 <!-- Navigation-->
@@ -180,7 +179,7 @@
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
 </footer>
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"
-        th:src="@{/assets/dist/js/bootstrap.bundle.min.js}"></script>
+<div th:replace="~{fragments/footer :: bootstrap-js}"></div>
+
 </body>
 </html>

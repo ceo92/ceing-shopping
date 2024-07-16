@@ -1,4 +1,4 @@
-package ceing.ceing.web;
+package ceing.ceing.web.controller;
 
 
 import ceing.ceing.domain.Member;
