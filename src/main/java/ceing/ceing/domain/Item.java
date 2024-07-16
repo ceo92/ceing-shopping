@@ -2,7 +2,6 @@ package ceing.ceing.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +13,7 @@ public class Item {
     @Column(name = "itemId")
     private Long id;
     private String itemName;
+    private ItemSize itemSize;
     private Integer price;
     private Integer quantity;
 

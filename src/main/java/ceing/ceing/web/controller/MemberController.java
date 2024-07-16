@@ -39,14 +39,14 @@ public class MemberController {
     @GetMapping("/login")
     public String loginForm(Model model){
         model.addAttribute("login", new MemberLoginDto());
-        return "login";
+        return "login/login";
     }
 
     @PostMapping("/login") //lo
     public String login(@Validated @ModelAttribute("login") MemberLoginDto memberLoginDto, BindingResult bindingResult , HttpServletRequest request){
         //1. 데이터 유효성 검증
         if (bindingResult.hasErrors()){
-            return "login";
+            return "login/login";
         }
         //2. 로그인 검증
         try {
@@ -60,7 +60,7 @@ public class MemberController {
         }catch (IllegalArgumentException e){
             //2-2 로그인 실패
             bindingResult.reject("loginFail");
-            return "login";
+            return "login/login";
         }
 
 
@@ -84,7 +84,7 @@ public class MemberController {
      */
     @GetMapping("/join")
     public String join(@ModelAttribute("member") MemberSaveDto member){
-        return "join";
+        return "login/join";
     }
 
 
@@ -92,7 +92,7 @@ public class MemberController {
     public String join(@Validated @ModelAttribute("member") MemberSaveDto memberSaveDto , BindingResult bindingResult){
         //필드 에러 검증(Bean Validation)
         if (bindingResult.hasErrors()){
-            return "join";
+            return "login/join";
         }
         //ㅅㅂ 비즈니스 로직 서비스에서 쳐 하랬지 ㅡㅡ 전역 에러 처리는 그냥 컨트롤러에서 하자 ㅇㅇ
 
@@ -100,10 +100,10 @@ public class MemberController {
             memberService.join(memberSaveDto);
         }catch (DuplicateLoginIdException e){
             bindingResult.reject("duplicate");
-            return "join";
+            return "login/join";
         }catch (PasswordMismatchException e){
             bindingResult.reject("pwDoubleCheckFail");
-            return "join";
+            return "login/join";
         }
 
         return "index";
