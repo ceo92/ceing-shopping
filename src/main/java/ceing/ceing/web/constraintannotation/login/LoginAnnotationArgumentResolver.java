@@ -33,11 +33,9 @@ public class LoginAnnotationArgumentResolver implements HandlerMethodArgumentRes
             return null;
         }
 
+        session.getAttributeNames().asIterator().forEachRemaining(System.out::println);
         //지정된 이름의 회원 객체 존재하면 그거 반환하고 없으면 null 반환
         return session.getAttribute(SessionConst.MEMBER_NAME);
-
-
-
 
     }
 }

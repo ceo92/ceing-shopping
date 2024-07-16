@@ -56,7 +56,7 @@ public class MemberController {
             HttpSession session = request.getSession(true); //세션 살아있으면 그거 반환 없으면 새로 세션 생성해서 반환
             session.setAttribute(SessionConst.MEMBER_NAME , loginMember);
             log.info("session = {}" , session.getAttribute(SessionConst.MEMBER_NAME));
-            return "redirect:/";
+            return "redirect:/"; //로그인 성공하면 기존 페이지로 리다이렉트 ㅇㅇ
         }catch (IllegalArgumentException e){
             //2-2 로그인 실패
             bindingResult.reject("loginFail");
