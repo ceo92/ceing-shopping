@@ -1,3 +1,4 @@
+/*
 package ceing.ceing.domain;
 
 import jakarta.persistence.Column;
@@ -21,3 +22,4 @@ public class DiscountPolicy {
 
 
 }
+*/

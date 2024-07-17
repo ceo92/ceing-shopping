@@ -20,14 +20,7 @@ public class Item {
     private double averageRate; //평균 별점
     //한 상품에는 여러 리뷰를 쓸 수 있음 즉 리뷰가 N이고 상품은 1
 
-    private String detail; //상품 설명
-
-    @OneToMany(mappedBy = "item") //이런 식으로 값 타입 컬렉션이 아닌 연관관계 엔티티를 만들어서 양방향으로 List로 받자 !
-    private List<ItemSize> itemSizes = new ArrayList<>();
-
-    @OneToMany(mappedBy = "item")
-    private List<Color> color = new ArrayList<>();
-
+    private String content; //상품 설명
 
     private String washingTip; //Dry Cleaning!
 
@@ -36,10 +29,16 @@ public class Item {
     // 한 브랜드(1)는 여러 아이템(N)을 가질 수 있고, 한 아이템은 한 브랜드에게만 소속됨.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
-    private Brand brand;
+    private Brand brand; // 한 상품은 한 브랜드에게 소속됨 , 한 브랜드(1)는 여러 상품(N)을 찍어낼 수 잇음
+    //한 팀은 여러 멤버들을 가짐
 
 
+    @OneToMany(mappedBy = "item") //이런 식으로 값 타입 컬렉션이 아닌 연관관계 엔티티를 만들어서 양방향으로 List로 받자 !
+    private List<ItemSize> itemSizes = new ArrayList<>(); //컬렉션 대신 일대다 다대일 연관관계 매핑
 
+
+    @OneToMany(mappedBy = "item")
+    private List<Color> color = new ArrayList<>(); //컬렉션 대신 일대다 다대일 연관관계 매핑
 
     //한 상품에는 여러 ItemSize가 할당됨
     // 즉 ItemSize가 N , 상품이 1
