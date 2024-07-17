@@ -10,18 +10,18 @@ import lombok.Setter;
 public class Item {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "itemId")
+    @Column(name = "item_id")
     private Long id;
     private String itemName;
     private ItemSize itemSize;
-    private Integer price;
-    private Integer quantity;
+    private int price;
+    private int stockQuantity;
 
     public Item(){}
 
-    public Item(String itemName , Integer price , Integer quantity){
+    public Item(String itemName , int price , int stockQuantity){
         this.itemName= itemName;
         this.price = price;
-        this.quantity=quantity;
+        this.stockQuantity = stockQuantity;
     }
 }
