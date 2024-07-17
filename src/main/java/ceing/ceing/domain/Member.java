@@ -3,6 +3,8 @@ package ceing.ceing.domain;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,6 +24,9 @@ public class Member {
     @Embedded
     private Address address;
     private String phoneNumber;
+
+    @Enumerated(EnumType.STRING)
+    private GenderConst gender; //성별 정보
 
     public Member(String name, Address address, String phoneNumber, String loginId, String password) {
         this.name = name;
