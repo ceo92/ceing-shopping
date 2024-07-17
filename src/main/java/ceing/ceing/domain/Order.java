@@ -21,7 +21,7 @@ import java.util.Date;
 @Getter @Setter(AccessLevel.PRIVATE)
 public class Order {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "orderId")
+    @Column(name = "order_id")
     private Long id; //UID392RK
     //주문 상태(주문 대기, 주문 완료  , 배송 중 , 배송 완료)
     @Enumerated(EnumType.STRING)

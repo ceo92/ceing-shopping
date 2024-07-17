@@ -25,5 +25,11 @@ public class ItemController {
   /**
    * 상품
    */
+  @GetMapping("item")
+  public String xx(){
+    return "item/item";
+  }
+
+
 
 }
