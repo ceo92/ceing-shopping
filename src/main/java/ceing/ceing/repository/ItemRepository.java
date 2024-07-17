@@ -9,11 +9,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RequiredArgsConstructor
 public class ItemRepository {
 
   private final EntityManager em;
   private final JPAQueryFactory query;
+
+  public ItemRepository(EntityManager em, JPAQueryFactory query) {
+    this.em = em;
+    this.query = new JPAQueryFactory(em);
+  }
+
   // Item 등록 , 관리자 권한
   public Long save(Item item){
     em.persist(item);
