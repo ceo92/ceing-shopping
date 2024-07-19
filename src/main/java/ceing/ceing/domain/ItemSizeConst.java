@@ -1,6 +1,6 @@
 package ceing.ceing.domain;
 
-public enum SizeConst {
+public enum ItemSizeConst {
   S , M , L , XL
 
 }
