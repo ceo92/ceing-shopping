@@ -33,9 +33,14 @@ public class ItemRepository {
     return Optional.ofNullable(em.find(Item.class, id));
   }
 
- /* public List<Item> findAll(){
-    return em.createQuery("select i from Item i" , Item.class).set
-  }*/
+  public List<Item> findAll(){
+    return em.createQuery("select i from Item i", Item.class).getResultList();
+  }
+
+
+
+
+
 
 
 }

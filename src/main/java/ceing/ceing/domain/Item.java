@@ -25,7 +25,7 @@ public class Item {
 
     private String fabric; //Cotton 100%
 
-    private String color;
+    private String color; //남색 , 파란색 , 초록색 , ... , 등록자가 임의의 단일 값을 넣어주면 되므로
     // 한 브랜드(1)는 여러 아이템(N)을 가질 수 있고, 한 아이템은 한 브랜드에게만 소속됨.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
@@ -35,8 +35,6 @@ public class Item {
     //사이즈를 실제로 한 row에서 여러 개를 갖지 않고 한 사이즈만 가지니까 enum이지 정의 틀만 가지면 되니 enum
     @Enumerated(value = EnumType.STRING)
     private ItemSizeConst itemSize;
-
-
 
     //DB에선 컬렉션을 다룰 수 없음 => 즉 다중 값을 갖는 테이블과 따로 엔티티 뽑아서 연관관계 맺으면 됨 , @ElementCollection은 쓰면 안 되므로 !
 

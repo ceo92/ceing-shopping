@@ -42,7 +42,7 @@ public class MemberController {
         return "login/login";
     }
 
-    @PostMapping("/login") //lo
+    @PostMapping("/login")
     public String login(@Validated @ModelAttribute("login") MemberLoginDto memberLoginDto, BindingResult bindingResult , HttpServletRequest request){
         //1. 데이터 유효성 검증
         if (bindingResult.hasErrors()){
@@ -83,7 +83,8 @@ public class MemberController {
      * 회원가입 로직
      */
     @GetMapping("/join")
-    public String join(@ModelAttribute("member") MemberSaveDto member){
+    public String join(Model model){
+        model.addAttribute("member", new MemberSaveDto());
         return "login/join";
     }
 

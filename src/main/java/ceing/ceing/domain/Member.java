@@ -43,6 +43,9 @@ public class Member {
     private String password;
 
 
+    /**
+     * Member 설정자 초기화 메서드
+     */
     public void changeMemberInfo(String name , Address address , String phoneNumber){
         this.name=name;
         this.address = address;

@@ -15,6 +15,9 @@ public class MemberSaveDto {
     private String username;
 
     @NoBlank
+    private
+
+    @NoBlank
     private String loginId;
 
     @NoBlank
@@ -31,5 +34,7 @@ public class MemberSaveDto {
 
     @NoBlank
     private String phoneNumber;
+
+
 
 }

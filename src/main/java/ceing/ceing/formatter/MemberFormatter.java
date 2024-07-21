@@ -1,6 +1,7 @@
 package ceing.ceing.formatter;
 
 import ceing.ceing.domain.Member;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.Formatter;
 
 import java.text.ParseException;
