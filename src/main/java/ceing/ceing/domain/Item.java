@@ -14,7 +14,7 @@ public class Item {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
-    private String itemName;
+    private String name;
     private int price;
     private int stockQuantity; //관리자 설정
     //한 상품에는 여러 리뷰를 쓸 수 있음 즉 리뷰가 N이고 상품은 1
@@ -25,7 +25,12 @@ public class Item {
 
     private String fabric; //Cotton 100%
 
-    private String color; //남색 , 파란색 , 초록색 , ... , 등록자가 임의의 단일 값을 넣어주면 되므로
+
+    //한 팀은 여러 회원 갖고 , 한 회원은 한 팀에게만 소속됨 이때 1이 팀이고 N이 회원이므로 N이 연관관계 주인 즉 Member이 주인이 됨
+    //한 옷은 여러 칼라들을 갖고 한 칼라는 한 옷에만 할당됨 , 즉 칼라가 N이고 ManyToOne이 됨
+    @OneToMany(mappedBy = "item")
+    private Color color; //남색 , 파란색 , 초록색 , ... , 등록자가 임의의 단일 값을 넣어주면 되므로
+
     // 한 브랜드(1)는 여러 아이템(N)을 가질 수 있고, 한 아이템은 한 브랜드에게만 소속됨.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "brand_id")
@@ -41,8 +46,8 @@ public class Item {
 
     public Item(){}
 
-    public Item(String itemName , int price , int stockQuantity){
-        this.itemName= itemName;
+    public Item(String name, int price , int stockQuantity){
+        this.name = name;
         this.price = price;
         this.stockQuantity = stockQuantity;
     }

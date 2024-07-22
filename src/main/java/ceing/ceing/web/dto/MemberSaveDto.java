@@ -15,9 +15,6 @@ public class MemberSaveDto {
     private String username;
 
     @NoBlank
-    private
-
-    @NoBlank
     private String loginId;
 
     @NoBlank
