@@ -15,14 +15,13 @@ public class HomeController {
 
     @RequestMapping
     public String homeController(@Login Member loginMember , Model model){
+        /*if (loginMember == null){ //Member이 null이면 index로 이동 아니면 member 에 loginmember을 담아서 index로 이동
+            return "index";
+        }*/
+
         model.addAttribute("member" , loginMember);
         return "index";
         //클라이언트단에서 판독할래 서버단에서 판독할래 차이?
-
-        /*if (loginMember == null){
-            return "home";
-        }
-        */
     }
 
 

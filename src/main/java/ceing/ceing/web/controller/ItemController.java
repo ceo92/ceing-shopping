@@ -1,17 +1,12 @@
 package ceing.ceing.web.controller;
 
 import ceing.ceing.domain.Item;
-import ceing.ceing.domain.ItemSizeConst;
 import ceing.ceing.service.ItemService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @RequiredArgsConstructor
@@ -71,11 +66,11 @@ public class ItemController {
   }
 
 
-  @PostMapping("items/{id}")
+  /*@PostMapping("items/{id}")
   public String item(@PathVariable("id")Long id , @ModelAttribute){
 
     return "item/item";
-  }
+  }*/
 
 
 
