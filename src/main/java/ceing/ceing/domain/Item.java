@@ -40,8 +40,6 @@ public class Item {
 
     //사이즈를 실제로 한 row에서 여러 개를 갖지 않고 한 사이즈만 가지니까 enum이지 정의 틀만 가지면 되니 enum
     //한 옷은 여러 개의 사이즈를 갖고 한 사이즈는 한 옷에게만 할당되어짐 , 즉
-    @OneToMany(mappedBy = "item")
-    private List<ItemSize> itemSize = new ArrayList<>();
 
 
     //DB에선 컬렉션을 다룰 수 없음 => 즉 다중 값을 갖는 테이블과 따로 엔티티 뽑아서 연관관계 맺으면 됨 , @ElementCollection은 쓰면 안 되므로 !

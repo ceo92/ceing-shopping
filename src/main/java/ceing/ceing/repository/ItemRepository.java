@@ -1,6 +1,7 @@
 package ceing.ceing.repository;
 
 
+import ceing.ceing.domain.Color;
 import ceing.ceing.domain.Item;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
@@ -35,9 +36,9 @@ public class ItemRepository {
   public List<Item> findAll(){
     return em.createQuery("select i from Item i", Item.class).getResultList();
   }
+  //옷 저장하면서 색깔과
+  public List<Item> findByColorAndSize() { //일대다대다 페치조인은 X , 또한 일대다 조인(컬렉션 조인) 시 페이징 X
 
-  public List<Item> findByColorAndSize(){ //일대다대다 페치조인은 X , 또한 일대다 조인(컬렉션 조인) 시 페이징 X
-    return em.createQuery("select i from Item i join fetch i.colors where size = :size" , Item.class).setParameter("size").getResultList();
   }
 
 
