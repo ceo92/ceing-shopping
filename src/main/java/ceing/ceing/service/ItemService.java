@@ -20,9 +20,18 @@ public class ItemService {
     return itemRepository.findAll();
   }
 
+
+  public Item findItem(Long id){
+    return itemRepository.findById(id).orElse(null);
+  }
+
+  @Transactional
   public void saveItem(Item item){
     itemRepository.save(item);
   }
+
+
+
 
 
 

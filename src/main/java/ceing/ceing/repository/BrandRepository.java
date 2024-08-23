@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class BrandRepository {
 
   private final EntityManager em;

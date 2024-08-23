@@ -3,31 +3,31 @@ package ceing.ceing.web.controller;
 import ceing.ceing.domain.Brand;
 import ceing.ceing.domain.Item;
 import ceing.ceing.repository.BrandRepository;
+import ceing.ceing.service.BrandService;
 import ceing.ceing.service.ItemService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequiredArgsConstructor
 public class ItemController {
 
   private final ItemService itemSerivce;
-  private final BrandRepository brandRepository;
-  /**
-   * 1. 관리자 페이지
-   */
+  private final BrandService brandService;
 
-
+  //사업자 , 관리자 ,
   /**
-   * 상품 등록 폼
+   * 상품 등록 폼 , 사업자 즉 BUSINESS_MAN만이 접근할 수 있지 , 즉 애초에 사업자 로그인 => 사업자 상품 등록 폼 =>
    */
-  @GetMapping("items/save")
-  public String saveItemForm(Model model){
+  //상품을 등록할 때 상품 사이즈도 덩달아 등록하잖아 상품 사이즈만 따로 어떻게 하진 않을 테니? , 이미 존재하는 상품을 무
+  @GetMapping("items/save") //권한 있는 사용자만 접근할 수 있는 똑같은 등록 폼에다가 값을 넣는 느낌
+  public String saveItemForm(@PathVariable Long brandId ,  Model model){
     model.addAttribute("item", new Item()); //th:field로 폼에 넣기 용
-    model.addAttribute("brands", brandRepository.findAll()); //브랜드 리스트로 select box에서 지정용
+    model.addAttribute("brands" , brandService.findBrands()); //Brand select box 선택
     return "item/saveItem";
   }
 
