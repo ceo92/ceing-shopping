@@ -1,5 +1,7 @@
 package ceing.ceing.domain;
 
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +21,9 @@ public class Brand {
   @Column(name = "brand_id")
   private Long id;
 
-  private String name;
+  private String brandName;
+
+  private Address address;
 
 
   //브랜드는 어떤 상품을 갖는지 조회할 일이 있으므로 이렇게 양방향 연관관계를 하는 게 좋아보임 ㅇㅇ

@@ -28,17 +28,14 @@ public class ItemRepository {
     return item.getId();
   }
 
-  // Item 조회
+  // Item 조회 , 일대다 다대일
   public Optional<Item> findById(Long id){
     return Optional.ofNullable(em.find(Item.class, id));
   }
 
   public List<Item> findAll(){
-    return em.createQuery("select i from Item i", Item.class).getResultList();
-  }
-  //옷 저장하면서 색깔과
-  public List<Item> findByColorAndSize() { //일대다대다 페치조인은 X , 또한 일대다 조인(컬렉션 조인) 시 페이징 X
-
+    String jpql = "select i from Item i join fetch i.itemSizes"; //JPQL은 객체에 날리는 것 , 이렇게 페치 조인을 통해 가져와서 명령어로 하는 것
+    return em.createQuery(jpql, Item.class).getResultList();
   }
 
 

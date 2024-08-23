@@ -27,10 +27,15 @@ public class Item {
     private String fabric; //Cotton 100%
 
 
+    @OneToMany(mappedBy = "item")
+    private List<ItemSize> itemSizes = new ArrayList<>();
+
+
+    private String color; //그냥 색깔 그 자체임
     //한 팀은 여러 회원 갖고 , 한 회원은 한 팀에게만 소속됨 이때 1이 팀이고 N이 회원이므로 N이 연관관계 주인 즉 Member이 주인이 됨
     //한 옷은 여러 칼라들을 갖고 한 칼라는 한 옷에만 할당됨 , 즉 칼라가 N이고 ManyToOne이 됨
-    @OneToMany(mappedBy = "item")
-    private List<Color> colors = new ArrayList<>(); //남색 , 파란색 , 초록색 , ... , 등록자가 임의의 단일 값을 넣어주면 되므로
+    /*@OneToMany(mappedBy = "item")
+    private List<Color> colors = new ArrayList<>(); //남색 , 파란색 , 초록색 , ... , 등록자가 임의의 단일 값을 넣어주면 되므로*/
 
     // 한 브랜드(1)는 여러 아이템(N)을 가질 수 있고, 한 아이템은 한 브랜드에게만 소속됨.
     @ManyToOne(fetch = FetchType.LAZY)

@@ -14,7 +14,7 @@ import lombok.Setter;
 
 @Embeddable
 @Getter @Setter(AccessLevel.PRIVATE)
-public class ItemSize {
+public class ItemSize {//한 상품은 여러 상품 사이즈를 가질 수 있다. 한 사이즈는 한 상품에게만 할당됨
 
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -22,6 +22,7 @@ public class ItemSize {
   private String name; //사이즈 이름
 
   private int fullLength; //총장
+
   private int shoulderWidth; //어깨 너비
 
   private int chestLength; //가슴 단면

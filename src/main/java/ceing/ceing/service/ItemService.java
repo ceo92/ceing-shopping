@@ -2,6 +2,7 @@ package ceing.ceing.service;
 
 import ceing.ceing.domain.Item;
 import ceing.ceing.repository.ItemRepository;
+import ceing.ceing.web.dto.ItemSaveDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,11 @@ public class ItemService {
     return itemRepository.findAll();
   }
 
+  public void saveItem(Item item){
+    itemRepository.save(item);
+  }
+
 
 
 }
-//
 

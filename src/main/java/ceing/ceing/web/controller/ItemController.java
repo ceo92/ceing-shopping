@@ -1,6 +1,8 @@
 package ceing.ceing.web.controller;
 
+import ceing.ceing.domain.Brand;
 import ceing.ceing.domain.Item;
+import ceing.ceing.repository.BrandRepository;
 import ceing.ceing.service.ItemService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ItemController {
 
   private final ItemService itemSerivce;
+  private final BrandRepository brandRepository;
   /**
    * 1. 관리자 페이지
    */
@@ -23,7 +26,8 @@ public class ItemController {
    */
   @GetMapping("items/save")
   public String saveItemForm(Model model){
-    model.addAttribute("item", new Item());
+    model.addAttribute("item", new Item()); //th:field로 폼에 넣기 용
+    model.addAttribute("brands", brandRepository.findAll()); //브랜드 리스트로 select box에서 지정용
     return "item/saveItem";
   }
 
